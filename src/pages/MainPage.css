@@ -1,0 +1,128 @@
+.main-page {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.no-result {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 40px 0;
+  font-weight: 300;
+}
+
+.page-loading,
+.page-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Hero */
+.hero {
+  padding: 60px 24px 48px;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: #888;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+.hero-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.8;
+  margin: 0 0 28px;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 12px 36px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+
+.hero-btn:hover {
+  background: #333;
+}
+
+/* Section */
+.section {
+  padding: 40px 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 24px;
+  letter-spacing: 0.05em;
+}
+
+.cake-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 12px;
+}
+
+/* CTA */
+.cta-section {
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.cta-text {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #666;
+  margin: 0 0 20px;
+  line-height: 1.7;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 13px 32px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.2s;
+}
+
+.cta-btn:hover {
+  background: #333;
+}

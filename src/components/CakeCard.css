@@ -1,0 +1,50 @@
+.cake-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cake-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.cake-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cake-card:hover .cake-card-image {
+  transform: scale(1.03);
+}
+
+.cake-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+}
+
+.cake-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cake-card-category {
+  font-size: 13px;
+  color: #555;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+}
+
+.cake-card-price {
+  font-size: 14px;
+  color: #1a1a1a;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+}

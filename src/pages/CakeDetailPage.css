@@ -1,0 +1,145 @@
+.detail-loading,
+.detail-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #888;
+  font-size: 14px;
+}
+
+.detail-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+/* 이미지 */
+.detail-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f5f5f5;
+  overflow: hidden;
+}
+
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+}
+
+/* 본문 */
+.detail-body {
+  padding: 24px 20px;
+}
+
+.detail-category {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: #888;
+  margin: 0 0 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.detail-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+}
+
+.detail-divider {
+  height: 1px;
+  background: #e8e8e8;
+  margin: 20px 0;
+}
+
+/* 스펙 */
+.detail-spec {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-spec li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.spec-label {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  min-width: 48px;
+  padding-top: 1px;
+}
+
+.spec-value {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+/* 설명 */
+.detail-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.8;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* 버튼 */
+.detail-order-btn {
+  width: 100%;
+  padding: 15px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+
+.detail-order-btn:hover {
+  background: #333;
+}
+
+.detail-back-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: 1px solid #d8d8d8;
+  color: #888;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.detail-back-btn:hover {
+  border-color: #1a1a1a;
+  color: #1a1a1a;
+}

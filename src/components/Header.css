@@ -1,0 +1,72 @@
+.header-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.header-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #1a1a1a;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.header-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  opacity: 0.6;
+}
+
+/* 검색 바 */
+.search-bar {
+  padding: 10px 20px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.search-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #d8d8d8;
+  background: #fafafa;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.search-input:focus {
+  border-color: #1a1a1a;
+  background: #fff;
+}
+
+.search-input::placeholder {
+  color: #bbb;
+}
