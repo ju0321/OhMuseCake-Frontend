@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import logo from '../assets/logo.jpg'
 import './Header.css'
 
 export default function Header({ searchQuery, onSearch }) {
@@ -22,7 +23,8 @@ export default function Header({ searchQuery, onSearch }) {
     <header className="header-wrap">
       <div className="header">
         <Link to="/" className="header-logo" onClick={() => { onSearch(''); setSearchOpen(false) }}>
-          Oh, muse, cake
+          <img src={logo} alt="Oh, Muse Cake" className="header-logo-img" />
+          <span className="header-logo-text">Oh, muse cake</span>
         </Link>
         <div className="header-icons">
           <button className="icon-btn" aria-label="검색" onClick={handleSearchToggle}>
@@ -41,6 +43,14 @@ export default function Header({ searchQuery, onSearch }) {
           <button className="icon-btn" aria-label="채팅">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </button>
+          <button className="icon-btn" aria-label="주문 조회" onClick={() => navigate('/order-lookup')}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="8" y1="9" x2="16" y2="9" />
+              <line x1="8" y1="13" x2="16" y2="13" />
+              <line x1="8" y1="17" x2="12" y2="17" />
             </svg>
           </button>
           <button className="icon-btn" aria-label="주문서" onClick={() => navigate('/order')}>

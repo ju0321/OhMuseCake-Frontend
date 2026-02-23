@@ -1,0 +1,176 @@
+.lookup-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+}
+
+.lookup-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 28px 20px 10px;
+  letter-spacing: 0.02em;
+}
+
+.lookup-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+  padding: 0 20px 20px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Search form */
+.lookup-form {
+  padding: 0 20px 20px;
+}
+
+.lookup-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.lookup-input {
+  flex: 1;
+  padding: 11px 12px;
+  border: 1px solid #d8d8d8;
+  background: #fafafa;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 0;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+
+.lookup-input::placeholder {
+  color: #bbb;
+}
+
+.lookup-input:focus {
+  border-color: #1a1a1a;
+  background: #fff;
+}
+
+.lookup-btn {
+  padding: 11px 20px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: background 0.2s;
+  border-radius: 0;
+}
+
+.lookup-btn:hover:not(:disabled) {
+  background: #333;
+}
+
+.lookup-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* States */
+.lookup-error {
+  margin: 0 20px;
+  padding: 12px;
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #cc0000;
+  font-weight: 300;
+}
+
+.lookup-empty {
+  margin: 0 20px;
+  padding: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #888;
+  font-weight: 300;
+  text-align: center;
+}
+
+/* Results */
+.lookup-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 20px;
+}
+
+.order-card {
+  border: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.order-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.order-card-id {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #666;
+  font-weight: 300;
+}
+
+.order-status {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.order-status--REQUEST    { background: #f5f5f5; color: #555; }
+.order-status--CONFIRMED  { background: #f0f4ff; color: #3355cc; }
+.order-status--IN_PROGRESS { background: #fff8e6; color: #b87b00; }
+.order-status--COMPLETED  { background: #f0fff4; color: #1a7a40; }
+.order-status--CANCELLED  { background: #fff0f0; color: #cc3333; }
+
+.order-card-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.order-row {
+  display: flex;
+  gap: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+}
+
+.order-row-label {
+  color: #888;
+  font-weight: 300;
+  white-space: nowrap;
+  min-width: 72px;
+}
+
+.order-row-value {
+  color: #1a1a1a;
+  font-weight: 300;
+  line-height: 1.5;
+  word-break: keep-all;
+}

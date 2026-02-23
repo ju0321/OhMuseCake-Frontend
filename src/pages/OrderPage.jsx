@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createOrder } from '../api/api'
 import './OrderPage.css'
 
@@ -28,8 +28,10 @@ const CAKE_FLAVOR = [
   { value: 'CARAMEL_CRUNCH', label: '카라멜 크런치' },
 ]
 
-const HEART_CAKE_OPTIONS = [
-  { value: 'CREAM_COLOR_CHANGE', label: '생크림 색상 변경' },
+// CakeOption enum (NONE 제외, 중복 선택 가능)
+const CAKE_OPTIONS = [
+  { value: 'CREAM_COLOR_CHANGE', label: '생크림 색 변경' },
+  { value: 'CREAM_COLOR_CHANGE_DARK', label: '생크림 색 변경 - 짙은 색상' },
   { value: 'JELLY_ADD', label: '젤리 추가' },
   { value: 'FLOWER_ADD', label: '생화 추가' },
 ]
@@ -42,7 +44,16 @@ const LETTERING_OPTIONS = [
 
 const BAG_OPTIONS = [
   { value: 'NONE', label: '없음' },
-  { value: 'BAG', label: '미니 / 1-2호 / 3호' },
+  { value: 'MINI', label: '미니' },
+  { value: 'SIZE_1_2', label: '1~2호' },
+  { value: 'SIZE_3', label: '3호' },
+]
+
+// ExtraOption enum 하드코딩
+const EXTRA_OPTIONS = [
+  { value: 'HANDWRITING_GARLAND', label: '손글씨 가랜더' },
+  { value: 'HANDWRITING_CANDLE', label: '손글씨 초 추가' },
+  { value: 'CLEAR_BOX', label: '투명 상자' },
 ]
 
 const INITIAL_FORM = {
@@ -53,45 +64,67 @@ const INITIAL_FORM = {
   cakeCategory: '',
   cakeSize: '',
   cakeFlavor: '',
-  heartCakeOptions: [],
+  cakeOptions: [],
   letteringType: 'NONE',
   letteringText: '',
-  designDetail: '',
   bagOption: 'NONE',
-  requestNote: '',
+  extraOptions: [],
+  designDetail: '',
   referenceImageUrl: '',
 }
 
 export default function OrderPage() {
   const [form, setForm] = useState(INITIAL_FORM)
+  const [extraDropdownOpen, setExtraDropdownOpen] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [submitResult, setSubmitResult] = useState(null) // { success, orderId, message }
+  const [submitResult, setSubmitResult] = useState(null)
+  const extraDropdownRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (extraDropdownRef.current && !extraDropdownRef.current.contains(e.target)) {
+        setExtraDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const set = (field, value) => setForm((f) => ({ ...f, [field]: value }))
 
-  const toggleHeartOption = (value) => {
+  const toggleCakeOption = (value) => {
     setForm((f) => ({
       ...f,
-      heartCakeOptions: f.heartCakeOptions.includes(value)
-        ? f.heartCakeOptions.filter((v) => v !== value)
-        : [...f.heartCakeOptions, value],
+      cakeOptions: f.cakeOptions.includes(value)
+        ? f.cakeOptions.filter((v) => v !== value)
+        : [...f.cakeOptions, value],
     }))
+  }
+
+  const toggleExtraOption = (value) => {
+    setForm((f) => ({
+      ...f,
+      extraOptions: f.extraOptions.includes(value)
+        ? f.extraOptions.filter((v) => v !== value)
+        : [...f.extraOptions, value],
+    }))
+  }
+
+  const buildLetteringText = () => {
+    if (form.letteringType === 'NONE') return null
+    const option = LETTERING_OPTIONS.find((o) => o.value === form.letteringType)
+    const prefix = option ? `${option.label} (+${option.price.toLocaleString()}원)\n` : ''
+    return prefix + form.letteringText
   }
 
   const buildRequestNote = () => {
     const parts = []
     if (form.designDetail) parts.push(`[디자인 디테일] ${form.designDetail}`)
-    const bag = BAG_OPTIONS.find((o) => o.value === form.bagOption)
-    if (bag && form.bagOption !== 'NONE') parts.push(`[보냄백] ${bag.label}`)
-    if (form.requestNote) parts.push(`[요청사항] ${form.requestNote}`)
-    return parts.join('\n')
-  }
-
-  const buildLetteringText = () => {
-    if (form.letteringType === 'NONE') return ''
-    const option = LETTERING_OPTIONS.find((o) => o.value === form.letteringType)
-    const prefix = option ? `${option.label} (+${option.price.toLocaleString()}원)\n` : ''
-    return prefix + form.letteringText
+    if (form.bagOption !== 'NONE') {
+      const bag = BAG_OPTIONS.find((o) => o.value === form.bagOption)
+      if (bag) parts.push(`[보냉백] ${bag.label}`)
+    }
+    return parts.join('\n') || null
   }
 
   const handleSubmit = async (e) => {
@@ -107,8 +140,9 @@ export default function OrderPage() {
         cakeCategory: form.cakeCategory,
         cakeSize: form.cakeSize,
         cakeFlavor: form.cakeFlavor,
-        heartCakeOptions: form.cakeCategory === 'HEART' ? form.heartCakeOptions : [],
+        cakeOptions: form.cakeOptions,
         letteringText: buildLetteringText(),
+        extraOptions: form.extraOptions,
         requestNote: buildRequestNote(),
         referenceImageUrl: form.referenceImageUrl || null,
       }
@@ -153,7 +187,7 @@ export default function OrderPage() {
           <input
             className="form-input"
             type="text"
-            placeholder="text"
+            placeholder="홍길동"
             value={form.customerName}
             onChange={(e) => set('customerName', e.target.value)}
             required
@@ -200,7 +234,7 @@ export default function OrderPage() {
           <select
             className="form-select"
             value={form.cakeCategory}
-            onChange={(e) => { set('cakeCategory', e.target.value); set('heartCakeOptions', []) }}
+            onChange={(e) => set('cakeCategory', e.target.value)}
             required
           >
             <option value="" disabled>Value</option>
@@ -243,6 +277,24 @@ export default function OrderPage() {
           </select>
         </div>
 
+        {/* 케이크 옵션 변경 (복수 선택) */}
+        <div className="form-group">
+          <label className="form-label">케이크 옵션 변경</label>
+          <p className="form-hint">* 중복 선택 가능</p>
+          <div className="checkbox-group">
+            {CAKE_OPTIONS.map((opt) => (
+              <label key={opt.value} className="checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={form.cakeOptions.includes(opt.value)}
+                  onChange={() => toggleCakeOption(opt.value)}
+                />
+                <span>{opt.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
         {/* 레터링 */}
         <div className="form-group">
           <label className="form-label">레터링</label>
@@ -275,41 +327,10 @@ export default function OrderPage() {
           )}
         </div>
 
-        {/* 디자인 디테일 */}
+        {/* 다회용 보냉백 */}
         <div className="form-group">
-          <label className="form-label">디자인 디테일</label>
-          <textarea
-            className="form-textarea"
-            placeholder="원하시는 디자인을 자세히 적어주세요&#10;(참고 이미지 URL 포함 가능)"
-            value={form.designDetail}
-            onChange={(e) => set('designDetail', e.target.value)}
-            rows={4}
-          />
-        </div>
-
-        {/* 추가 옵션 — 하트 케이크일 때만 표시 */}
-        {form.cakeCategory === 'HEART' && (
-          <div className="form-group">
-            <label className="form-label">추가 옵션</label>
-            <div className="checkbox-group">
-              {HEART_CAKE_OPTIONS.map((opt) => (
-                <label key={opt.value} className="checkbox-item">
-                  <input
-                    type="checkbox"
-                    checked={form.heartCakeOptions.includes(opt.value)}
-                    onChange={() => toggleHeartOption(opt.value)}
-                  />
-                  <span>{opt.label}</span>
-                </label>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* 보냄백 */}
-        <div className="form-group">
-          <label className="form-label">보냄백</label>
-          <div className="radio-group">
+          <label className="form-label">다회용 보냉백</label>
+          <div className="radio-group radio-group--grid">
             {BAG_OPTIONS.map((opt) => (
               <label key={opt.value} className="radio-item">
                 <input
@@ -325,22 +346,59 @@ export default function OrderPage() {
           </div>
         </div>
 
-        {/* 요청사항 */}
+        {/* 추가 옵션 — 드롭다운 */}
         <div className="form-group">
-          <label className="form-label">요청사항</label>
+          <label className="form-label">추가 옵션(중복 선택 가능)</label>
+          <div className="extra-dropdown" ref={extraDropdownRef}>
+            <button
+              type="button"
+              className="extra-dropdown-trigger"
+              onClick={() => setExtraDropdownOpen((v) => !v)}
+            >
+              <span className="extra-dropdown-value">
+                {form.extraOptions.length === 0
+                  ? 'Value'
+                  : EXTRA_OPTIONS.filter((o) => form.extraOptions.includes(o.value))
+                      .map((o) => o.label)
+                      .join(', ')}
+              </span>
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1l5 5 5-5" stroke="#999" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </button>
+            {extraDropdownOpen && (
+              <div className="extra-dropdown-menu">
+                {EXTRA_OPTIONS.map((opt) => (
+                  <label key={opt.value} className="extra-dropdown-item">
+                    <input
+                      type="checkbox"
+                      checked={form.extraOptions.includes(opt.value)}
+                      onChange={() => toggleExtraOption(opt.value)}
+                    />
+                    <span>{opt.label}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 디자인 디테일 */}
+        <div className="form-group">
+          <label className="form-label">디자인 디테일</label>
           <textarea
             className="form-textarea"
-            placeholder="기타 요청사항을 입력해주세요"
-            value={form.requestNote}
-            onChange={(e) => set('requestNote', e.target.value)}
-            rows={3}
+            placeholder="원하시는 디자인을 자세히 적어주세요"
+            value={form.designDetail}
+            onChange={(e) => set('designDetail', e.target.value)}
+            rows={4}
           />
         </div>
 
         {/* 안내 문구 */}
         <div className="order-notice">
-          <p>*주문서를 보고 만듭니다. 누락 방지를 위해 성함 후 변경 사항이 있을 시 변경된 내용 변경 후 다시 전송 부탁드립니다.</p>
-          <p>*모든 주문은 픽업 사용일 전날 위고 동의한 것으로 간주되어 진행됩니다.</p>
+          <p>* 주문서를 보고 만듭니다. 누락 방지를 위해 성함 후 변경 사항이 있을 시 변경된 내용 변경 후 다시 전송 부탁드립니다.</p>
+          <p>* 모든 주문은 픽업 사용일 전날 위고 동의한 것으로 간주되어 진행됩니다.</p>
         </div>
 
         {/* 에러 */}

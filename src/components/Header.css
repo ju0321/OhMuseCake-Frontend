@@ -14,12 +14,26 @@
 }
 
 .header-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
-  font-weight: 400;
-  color: #1a1a1a;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.header-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  color: #1a1a1a;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .header-icons {

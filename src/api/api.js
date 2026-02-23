@@ -17,11 +17,14 @@ export const getBestCakes = () => request('/cakes/best')
 export const getAllCakes = () => request('/cakes')
 export const getCakeDetail = (cakeId) => request(`/cakes/${cakeId}`)
 
+// 추가상품
+export const getExtraProducts = () => request('/extra_products')
+
 // 주문
 export const createOrder = (body) =>
   request('/orders', { method: 'POST', body: JSON.stringify(body) })
 
 export const getOrdersByPhone = (phone) =>
-  request(`/orders?phone=${encodeURIComponent(phone)}`)
+  request(`/orders/search?phone=${encodeURIComponent(phone)}`)
 
 export const getOrderById = (orderId) => request(`/orders/${orderId}`)

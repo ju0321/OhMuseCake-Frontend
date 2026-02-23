@@ -140,6 +140,12 @@
   gap: 10px;
 }
 
+.radio-group--grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+}
+
 .radio-item,
 .checkbox-item {
   display: flex;
@@ -165,6 +171,92 @@
 .price-badge {
   color: #666;
   font-size: 12px;
+}
+
+.extra-desc {
+  color: #888;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/* 추가 옵션 드롭다운 */
+.extra-dropdown {
+  position: relative;
+}
+
+.extra-dropdown-trigger {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #d8d8d8;
+  background: #fafafa;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+.extra-dropdown-trigger:focus {
+  outline: none;
+  border-color: #1a1a1a;
+  background: #fff;
+}
+
+.extra-dropdown-value {
+  color: #bbb;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.extra-dropdown-value:not(:empty) {
+  color: #1a1a1a;
+}
+
+.extra-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #d8d8d8;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.extra-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  cursor: pointer;
+  font-weight: 300;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.extra-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.extra-dropdown-item:hover {
+  background: #fafafa;
+}
+
+.extra-dropdown-item input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #1a1a1a;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* Notice */

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getBestCakes, getAllCakes } from '../api/api'
 import CakeCard from '../components/CakeCard'
 import CategoryTabs from '../components/CategoryTabs'
+import headerImg from '../assets/header.jpg'
 import './MainPage.css'
 
 export default function MainPage({ searchQuery = '' }) {
@@ -51,14 +52,19 @@ export default function MainPage({ searchQuery = '' }) {
             {/* Hero */}
             {isDefault && (
               <section className="hero">
-                <p className="hero-sub">custom cake studio</p>
-                <h1 className="hero-title">Oh, muse, cake</h1>
-                <p className="hero-desc">
-                  당신의 특별한 날을 위한<br />세상에 하나뿐인 케이크
-                </p>
-                <button className="hero-btn" onClick={() => navigate('/order')}>
-                  주문하기
-                </button>
+                <div className="hero-banner">
+                  <img src={headerImg} alt="Oh, Muse Cake" className="hero-img" />
+                </div>
+                <div className="hero-content">
+                  <h1 className="hero-title">세상에 단 하나뿐인,<br />당신을 위한 특별한 케이크</h1>
+                  <p className="hero-sub-en">A cake as unique as you are.<br />More than cake, it's an experience.</p>
+                  <p className="hero-desc">
+                    우리는 단순히 케이크를 만드는 것이 아니라,<br />
+                    당신의 특별한 순간을 예술처럼 디자인합니다.<br />
+                    정교한 디테일, 고급스러운 맛, 그리고 진심 어린 손길로<br />
+                    세상에 단 하나뿐인 케이크를 선물합니다.
+                  </p>
+                </div>
               </section>
             )}
 

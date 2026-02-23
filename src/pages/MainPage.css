@@ -23,54 +23,51 @@
 
 /* Hero */
 .hero {
-  padding: 60px 24px 48px;
-  text-align: center;
   border-bottom: 1px solid #e8e8e8;
 }
 
-.hero-sub {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  color: #888;
-  text-transform: uppercase;
-  margin: 0 0 12px;
+.hero-banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.hero-content {
+  padding: 28px 20px 32px;
 }
 
 .hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px;
-  font-weight: 300;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
   color: #1a1a1a;
+  margin: 0 0 10px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+.hero-sub-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
   margin: 0 0 16px;
-  line-height: 1.2;
+  line-height: 1.7;
+  font-style: italic;
 }
 
 .hero-desc {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
   color: #666;
-  line-height: 1.8;
-  margin: 0 0 28px;
-}
-
-.hero-btn {
-  display: inline-block;
-  padding: 12px 36px;
-  background: #1a1a1a;
-  color: #fff;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  border: none;
-  cursor: pointer;
-  letter-spacing: 0.05em;
-  transition: background 0.2s;
-}
-
-.hero-btn:hover {
-  background: #333;
+  line-height: 1.9;
+  margin: 0;
 }
 
 /* Section */
