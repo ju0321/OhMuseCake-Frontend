@@ -56,6 +56,22 @@ const EXTRA_OPTIONS = [
   { value: 'CLEAR_BOX', label: '투명 상자' },
 ]
 
+const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' })
+
+function getTimeOptions(dateStr) {
+  if (!dateStr) return []
+  const day = new Date(dateStr).getDay() // 0=일, 6=토
+  const startH = 11
+  const endH = day === 6 ? 18 : 19 // 토요일 18시, 나머지 19시
+  const options = []
+  for (let m = startH * 60; m <= endH * 60; m += 30) {
+    const h = String(Math.floor(m / 60)).padStart(2, '0')
+    const min = String(m % 60).padStart(2, '0')
+    options.push(`${h}:${min}`)
+  }
+  return options
+}
+
 const INITIAL_FORM = {
   customerName: '',
   phone: '',
@@ -79,6 +95,13 @@ export default function OrderPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitResult, setSubmitResult] = useState(null)
   const extraDropdownRef = useRef(null)
+  const letteringInputRef = useRef(null)
+
+  useEffect(() => {
+    if (letteringInputRef.current) {
+      letteringInputRef.current.value = form.letteringText
+    }
+  }, [form.letteringText === ''])
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -112,13 +135,15 @@ export default function OrderPage() {
 
   const buildLetteringText = () => {
     if (form.letteringType === 'NONE') return null
-    const option = LETTERING_OPTIONS.find((o) => o.value === form.letteringType)
-    const prefix = option ? `${option.label} (+${option.price.toLocaleString()}원)\n` : ''
-    return prefix + form.letteringText
+    return form.letteringText || null
   }
 
   const buildRequestNote = () => {
     const parts = []
+    if (form.letteringType !== 'NONE') {
+      const option = LETTERING_OPTIONS.find((o) => o.value === form.letteringType)
+      if (option) parts.push(`[레터링 옵션] ${option.label} (+${option.price.toLocaleString()}원)`)
+    }
     if (form.designDetail) parts.push(`[디자인 디테일] ${form.designDetail}`)
     if (form.bagOption !== 'NONE') {
       const bag = BAG_OPTIONS.find((o) => o.value === form.bagOption)
@@ -214,17 +239,23 @@ export default function OrderPage() {
             <input
               className="form-input"
               type="date"
+              min={today}
               value={form.pickupDate}
-              onChange={(e) => set('pickupDate', e.target.value)}
+              onChange={(e) => setForm((f) => ({ ...f, pickupDate: e.target.value, pickupTime: '' }))}
               required
             />
-            <input
-              className="form-input"
-              type="time"
+            <select
+              className="form-select"
               value={form.pickupTime}
               onChange={(e) => set('pickupTime', e.target.value)}
+              disabled={!form.pickupDate}
               required
-            />
+            >
+              <option value="" disabled>시간 선택</option>
+              {getTimeOptions(form.pickupDate).map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -317,11 +348,15 @@ export default function OrderPage() {
           </div>
           {form.letteringType !== 'NONE' && (
             <input
+              ref={letteringInputRef}
               className="form-input"
               type="text"
               placeholder="레터링 문구 입력"
-              value={form.letteringText}
-              onChange={(e) => set('letteringText', e.target.value)}
+              defaultValue={form.letteringText}
+              onChange={(e) => {
+                if (!e.nativeEvent.isComposing) set('letteringText', e.target.value)
+              }}
+              onCompositionEnd={(e) => set('letteringText', e.target.value)}
               style={{ marginTop: '10px' }}
             />
           )}
