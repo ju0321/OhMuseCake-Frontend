@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getAllCakes } from '../api/api'
 import CakeCard from '../components/CakeCard'
+import CategoryTabs from '../components/CategoryTabs'
 import headerImg from '../assets/header.jpg'
 import bestHeart      from '../assets/cakes/best/heart-best.jpg'
 import bestFlower     from '../assets/cakes/best/flower-best.jpg'
@@ -57,6 +58,8 @@ export default function MainPage({ searchQuery = '' }) {
   if (error) return <div className="page-error">{error}</div>
 
   return (
+    <>
+      <CategoryTabs active="ALL" />
     <main className="main-page">
       {loading ? (
         <div className="page-loading">로딩 중...</div>
@@ -123,5 +126,6 @@ export default function MainPage({ searchQuery = '' }) {
         </>
       )}
     </main>
+    </>
   )
 }
