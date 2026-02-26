@@ -43,7 +43,7 @@
 
 .hero-title {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 500;
   color: #1a1a1a;
   margin: 0 0 10px;
@@ -53,7 +53,7 @@
 
 .hero-sub-en {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 400;
   color: #888;
   margin: 0 0 16px;
@@ -63,7 +63,7 @@
 
 .hero-desc {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #666;
   line-height: 1.9;
@@ -126,7 +126,7 @@
 
 .best-item-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
   color: #1a1a1a;
   margin: 0 0 14px;
@@ -134,7 +134,7 @@
 
 .best-item-desc {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
   color: #555;
   line-height: 1.9;
@@ -162,7 +162,7 @@
 
 .cta-text {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 300;
   color: #666;
   margin: 0 0 20px;
