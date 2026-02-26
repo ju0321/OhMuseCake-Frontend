@@ -40,7 +40,7 @@ export default function MainPage({ searchQuery = '' }) {
   const [allCakes, setAllCakes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [activeCategory, setActiveCategory] = useState('ALL')
+  const activeCategory = 'ALL'
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function MainPage({ searchQuery = '' }) {
 
   return (
     <>
-      <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
+      <CategoryTabs active={activeCategory} />
 
       <main className="main-page">
         {loading ? (

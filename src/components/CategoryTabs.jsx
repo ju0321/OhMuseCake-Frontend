@@ -12,7 +12,7 @@ const TABS = [
   { value: 'EXTRA', label: '추가상품' },
 ]
 
-export default function CategoryTabs({ active, onChange }) {
+export default function CategoryTabs({ active }) {
   const navigate = useNavigate()
 
   return (
@@ -24,7 +24,7 @@ export default function CategoryTabs({ active, onChange }) {
             className={`category-tab${active === tab.value ? ' active' : ''}`}
             onClick={() => {
               if (tab.value === 'ALL') {
-                onChange(tab.value)
+                navigate('/home')
               } else if (tab.value === 'EXTRA') {
                 navigate('/extra-products')
               } else {
