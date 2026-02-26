@@ -24,7 +24,7 @@ export default function CategoryTabs({ active }) {
             className={`category-tab${active === tab.value ? ' active' : ''}`}
             onClick={() => {
               if (tab.value === 'ALL') {
-                navigate('/home')
+                navigate('/all')
               } else if (tab.value === 'EXTRA') {
                 navigate('/extra-products')
               } else {

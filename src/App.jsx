@@ -7,6 +7,7 @@ import OrderPage from './pages/OrderPage'
 import OrderLookupPage from './pages/OrderLookupPage'
 import CakeDetailPage from './pages/CakeDetailPage'
 import ExtraProductPage from './pages/ExtraProductPage'
+import AllProductsPage from './pages/AllProductsPage'
 import './App.css'
 
 function AppInner() {
@@ -25,6 +26,7 @@ function AppInner() {
         <Route path="/order" element={<OrderPage />} />
         <Route path="/order-lookup" element={<OrderLookupPage />} />
         <Route path="/extra-products" element={<ExtraProductPage />} />
+        <Route path="/all" element={<AllProductsPage searchQuery={searchQuery} />} />
       </Routes>
     </div>
   )
