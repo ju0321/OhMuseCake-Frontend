@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { CATEGORY_THUMB } from '../assets/cakeThumb'
 import './CakeCard.css'
 
 const CATEGORY_LABEL = {
@@ -16,8 +17,12 @@ export default function CakeCard({ cake }) {
   return (
     <div className="cake-card" onClick={() => navigate(`/cakes/${cake.cakeId}`)}>
       <div className="cake-card-image-wrap">
-        {cake.imageUrl ? (
-          <img src={cake.imageUrl} alt={CATEGORY_LABEL[cake.cakeCategory]} className="cake-card-image" />
+        {(cake.imageUrl || CATEGORY_THUMB[cake.cakeCategory]) ? (
+          <img
+            src={cake.imageUrl || CATEGORY_THUMB[cake.cakeCategory]}
+            alt={CATEGORY_LABEL[cake.cakeCategory]}
+            className="cake-card-image"
+          />
         ) : (
           <div className="cake-card-placeholder" />
         )}

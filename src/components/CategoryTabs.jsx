@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import './CategoryTabs.css'
 
 const TABS = [
@@ -8,9 +9,12 @@ const TABS = [
   { value: 'FLOWER_JELLY', label: '생화 젤리' },
   { value: 'FLOWER_CUPCAKE', label: '생화 컵케이크' },
   { value: 'PETIT', label: '쁘띠' },
+  { value: 'EXTRA', label: '추가상품' },
 ]
 
 export default function CategoryTabs({ active, onChange }) {
+  const navigate = useNavigate()
+
   return (
     <nav className="category-tabs">
       <div className="category-tabs-inner">
@@ -18,7 +22,15 @@ export default function CategoryTabs({ active, onChange }) {
           <button
             key={tab.value}
             className={`category-tab${active === tab.value ? ' active' : ''}`}
-            onClick={() => onChange(tab.value)}
+            onClick={() => {
+              if (tab.value === 'ALL') {
+                onChange(tab.value)
+              } else if (tab.value === 'EXTRA') {
+                navigate('/extra-products')
+              } else {
+                navigate(`/cakes/category/${tab.value}`)
+              }
+            }}
           >
             {tab.label}
           </button>

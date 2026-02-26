@@ -1,0 +1,34 @@
+.landing-page {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: landing-fadein 0.8s ease;
+}
+
+@keyframes landing-fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: landing-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes landing-rise {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.landing-logo {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}

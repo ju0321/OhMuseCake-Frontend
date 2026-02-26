@@ -85,10 +85,73 @@
   letter-spacing: 0.05em;
 }
 
+.best-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 32px;
+}
+
 .cake-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px 12px;
+}
+
+.best-section {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+.best-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.best-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.best-item--reverse {
+  flex-direction: row-reverse;
+}
+
+.best-item-text {
+  flex: 1;
+}
+
+.best-item-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0 0 14px;
+}
+
+.best-item-desc {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.9;
+  margin: 0 0 4px;
+}
+
+.best-item-img {
+  flex: 1;
+  aspect-ratio: 155 / 130;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.best-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* CTA */

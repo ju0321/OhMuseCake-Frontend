@@ -1,13 +1,42 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getBestCakes, getAllCakes } from '../api/api'
+import { getAllCakes } from '../api/api'
 import CakeCard from '../components/CakeCard'
 import CategoryTabs from '../components/CategoryTabs'
 import headerImg from '../assets/header.jpg'
+import bestHeart      from '../assets/cakes/best/heart-best.jpg'
+import bestFlower     from '../assets/cakes/best/flower-best.jpg'
+import bestFlowerJelly from '../assets/cakes/best/flower-jelly-best.jpg'
 import './MainPage.css'
 
+const BEST_ITEMS = [
+  {
+    src: bestHeart,
+    title: 'Heart Cake',
+    desc: [
+      '하트 모양의 케이크로 특별한 날을 더욱 빛나게 해드립니다.',
+      '웨딩 드레스, 하트, 꽃, 파스텔 컬러 등 다양한 테마로 제작 가능합니다.',
+    ],
+  },
+  {
+    src: bestFlower,
+    title: 'Flower Cake',
+    desc: [
+      '자연에서 온 생화를 올린 케이크입니다.',
+      '소독 및 세척을 거친 신선한 생화로 우아하고 자연스러운 분위기를 연출합니다.',
+    ],
+  },
+  {
+    src: bestFlowerJelly,
+    title: 'Flower Jelly Cake',
+    desc: [
+      '생화 젤리 케이크는 프러포즈나 특별한 날을 위한 케이크입니다.',
+      '젤리 속 꽃이 오랫동안 보존되어 소중한 순간을 기억에 남겨드립니다.',
+    ],
+  },
+]
+
 export default function MainPage({ searchQuery = '' }) {
-  const [bestCakes, setBestCakes] = useState([])
   const [allCakes, setAllCakes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -15,11 +44,8 @@ export default function MainPage({ searchQuery = '' }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    Promise.all([getBestCakes(), getAllCakes()])
-      .then(([best, all]) => {
-        setBestCakes(best)
-        setAllCakes(all)
-      })
+    getAllCakes()
+      .then(setAllCakes)
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
   }, [])
@@ -69,12 +95,22 @@ export default function MainPage({ searchQuery = '' }) {
             )}
 
             {/* Best */}
-            {isDefault && bestCakes.length > 0 && (
-              <section className="section">
-                <h2 className="section-title">Best</h2>
-                <div className="cake-grid">
-                  {bestCakes.map((cake) => (
-                    <CakeCard key={cake.cakeId} cake={cake} />
+            {isDefault && (
+              <section className="section best-section">
+                <h2 className="section-title best-title">Best Cakes</h2>
+                <div className="best-list">
+                  {BEST_ITEMS.map((item, i) => (
+                    <div key={i} className={`best-item${i % 2 === 1 ? ' best-item--reverse' : ''}`}>
+                      <div className="best-item-text">
+                        <h3 className="best-item-title">{item.title}</h3>
+                        {item.desc.map((line, j) => (
+                          <p key={j} className="best-item-desc">{line}</p>
+                        ))}
+                      </div>
+                      <div className="best-item-img">
+                        <img src={item.src} alt={item.title} />
+                      </div>
+                    </div>
                   ))}
                 </div>
               </section>
