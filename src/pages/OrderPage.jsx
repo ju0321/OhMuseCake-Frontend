@@ -236,16 +236,19 @@ export default function OrderPage() {
         <div className="form-group">
           <label className="form-label">픽업 날짜 &amp; 시간</label>
           <div className="pickup-row">
-            <input
-              className="form-input"
-              type="date"
-              min={today}
-              value={form.pickupDate}
-              onChange={(e) => setForm((f) => ({ ...f, pickupDate: e.target.value, pickupTime: '' }))}
-              required
-            />
+            <div className="date-wrapper">
+              <input
+                className={`form-input${!form.pickupDate ? ' empty' : ''}`}
+                type="date"
+                min={today}
+                value={form.pickupDate}
+                onChange={(e) => setForm((f) => ({ ...f, pickupDate: e.target.value, pickupTime: '' }))}
+                required
+              />
+              {!form.pickupDate && <span className="date-placeholder">날짜 선택</span>}
+            </div>
             <select
-              className="form-select"
+              className={`form-select${!form.pickupTime ? ' placeholder' : ''}`}
               value={form.pickupTime}
               onChange={(e) => set('pickupTime', e.target.value)}
               disabled={!form.pickupDate}
