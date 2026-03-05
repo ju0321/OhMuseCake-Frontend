@@ -241,7 +241,7 @@
 }
 
 .extra-dropdown-value:not(:empty) {
-  color: #1a1a1a;
+  color: #999;
 }
 
 .extra-dropdown-menu {
