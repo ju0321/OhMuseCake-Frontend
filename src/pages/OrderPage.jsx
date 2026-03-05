@@ -61,8 +61,9 @@ const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' })
 function getTimeOptions(dateStr) {
   if (!dateStr) return []
   const day = new Date(dateStr).getDay() // 0=일, 6=토
+  if (day === 0) return [] // 일요일 무인픽업
   const startH = 11
-  const endH = day === 6 ? 18 : 19 // 토요일 18시, 나머지 19시
+  const endH = day === 6 ? 18 : 19 // 토요일 18시, 평일 19시
   const options = []
   for (let m = startH * 60; m <= endH * 60; m += 30) {
     const h = String(Math.floor(m / 60)).padStart(2, '0')
@@ -247,18 +248,22 @@ export default function OrderPage() {
               />
               {!form.pickupDate && <span className="date-placeholder">날짜 선택</span>}
             </div>
-            <select
-              className={`form-select${!form.pickupTime ? ' placeholder' : ''}`}
-              value={form.pickupTime}
-              onChange={(e) => set('pickupTime', e.target.value)}
-              disabled={!form.pickupDate}
-              required
-            >
-              <option value="" disabled>시간 선택</option>
-              {getTimeOptions(form.pickupDate).map((t) => (
-                <option key={t} value={t}>{t}</option>
-              ))}
-            </select>
+            {form.pickupDate && new Date(form.pickupDate).getDay() === 0 ? (
+              <div className="sunday-notice">일요일은 무인픽업만 가능합니다</div>
+            ) : (
+              <select
+                className={`form-select${!form.pickupTime ? ' placeholder' : ''}`}
+                value={form.pickupTime}
+                onChange={(e) => set('pickupTime', e.target.value)}
+                disabled={!form.pickupDate}
+                required
+              >
+                <option value="" disabled>시간 선택</option>
+                {getTimeOptions(form.pickupDate).map((t) => (
+                  <option key={t} value={t}>{t}</option>
+                ))}
+              </select>
+            )}
           </div>
         </div>
 
