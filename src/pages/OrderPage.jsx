@@ -268,7 +268,7 @@ export default function OrderPage() {
         <div className="form-group">
           <label className="form-label required">케이크 종류</label>
           <select
-            className="form-select"
+            className={`form-select${!form.cakeCategory ? ' placeholder' : ''}`}
             value={form.cakeCategory}
             onChange={(e) => set('cakeCategory', e.target.value)}
             required
@@ -285,7 +285,7 @@ export default function OrderPage() {
           <label className="form-label required">사이즈 / 수량</label>
           <p className="form-hint">* 사이즈에 따라 가격이 달라집니다</p>
           <select
-            className="form-select"
+            className={`form-select${!form.cakeSize ? ' placeholder' : ''}`}
             value={form.cakeSize}
             onChange={(e) => set('cakeSize', e.target.value)}
             required
@@ -301,7 +301,7 @@ export default function OrderPage() {
         <div className="form-group">
           <label className="form-label required">케이크 맛</label>
           <select
-            className="form-select"
+            className={`form-select${!form.cakeFlavor ? ' placeholder' : ''}`}
             value={form.cakeFlavor}
             onChange={(e) => set('cakeFlavor', e.target.value)}
             required
