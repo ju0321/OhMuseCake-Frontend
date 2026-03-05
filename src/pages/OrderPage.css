@@ -90,6 +90,21 @@
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
+  color: #999;
+}
+
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit,
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit-fields-wrapper,
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit-text,
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit-month-field,
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit-day-field,
+.pickup-row input[type="date"].form-input::-webkit-datetime-edit-year-field {
+  color: #999;
+}
+
+.pickup-row input[type="date"].form-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 0;
 }
 
 .form-select {
@@ -99,7 +114,7 @@
   background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 13px;
-  color: #1a1a1a;
+  color: #999;
   outline: none;
   box-sizing: border-box;
   appearance: none;
