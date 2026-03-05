@@ -65,7 +65,7 @@ function getTimeOptions(dateStr) {
   const startH = 11
   const endH = day === 6 ? 18 : 19 // 토요일 18시, 평일 19시
   const options = []
-  for (let m = startH * 60; m <= endH * 60; m += 60) {
+  for (let m = startH * 60; m <= endH * 60; m += 30) {
     const h = String(Math.floor(m / 60)).padStart(2, '0')
     const min = String(m % 60).padStart(2, '0')
     options.push(`${h}:${min}`)
