@@ -87,12 +87,14 @@
 
 .date-wrapper .form-input {
   width: 100%;
-  padding: 10px 36px 10px 12px;
+  height: 44px;
+  padding: 0 36px 0 12px;
   background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
   color: #1a1a1a;
+  line-height: 44px;
 }
 
 .date-wrapper .form-input.empty {
@@ -127,6 +129,7 @@
 .pickup-row .form-select {
   flex: 0 0 calc(50% - 4px);
   width: calc(50% - 4px);
+  height: 44px;
   box-sizing: border-box;
 }
 
