@@ -74,12 +74,12 @@
 
 .pickup-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 8px;
 }
 
 .pickup-row .form-input {
-  width: 100%;
+  flex: 1;
 }
 
 .form-select {
