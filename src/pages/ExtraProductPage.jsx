@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getExtraProducts } from '../api/api'
+import CategoryTabs from '../components/CategoryTabs'
 import garland from '../assets/extra/garland.jpg'
 import clearBox from '../assets/extra/clear-box.jpg'
 import candle1 from '../assets/extra/candle-1.jpg'
@@ -26,6 +27,8 @@ export default function ExtraProductPage() {
   if (error) return <div className="extra-error">{error}</div>
 
   return (
+    <>
+      <CategoryTabs active="EXTRA" />
     <main className="extra-page">
       <div className="extra-header">
         <h1 className="extra-title">EXTRA OPTIONS</h1>
@@ -60,5 +63,6 @@ export default function ExtraProductPage() {
         </button>
       </div>
     </main>
+    </>
   )
 }
